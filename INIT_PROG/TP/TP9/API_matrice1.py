@@ -119,8 +119,20 @@ def charge_matrice_str(nom_fichier):
     Returns:
         une matrice de str
     """
-    fic = open(nom_fichier, 'w')
-    
+    fic = open(nom_fichier, 'r')
+    nb_lignes = 0
+    nb_colonnes = len(fic.readline().split(','))
+    valeurs_matrice = []
+    for ligne in fic :
+        valeurs_matrice.append(ligne.split(','))
+        nb_lignes += 1
+    matrice_fic = matrice(nb_lignes,nb_colonnes,None)
+    for i in range(nb_lignes):
+        for j in range(nb_colonnes):
+            set_val(matrice_fic,i,j,valeurs_matrice[i*nb_colonnes+j])
+    return matrice_fic
+
+
 
 
 def sauve_matrice(la_matrice, nom_fichier):
